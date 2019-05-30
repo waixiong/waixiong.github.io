@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <title>waixiong.github.io</title>
-        <!-- HTML meta refresh URL redirection -->
-        <meta http-equiv="refresh"
-              content="0; url=https://waixiong/github.io/build">
+        <script src="jquery.js"></script>
+        <script>
+        $(function(){
+            $("#includedContent").load("https://waixiong.github.io/build");
+        });
+        </script>
     </head>
 
     <body>
-        <p>The page has moved to:
-        <a href="https://www.rapidtables.com/web/dev/html-redirect.htm">this page</a>
-        </p>
+        <div data-include="https://waixiong.github.io/build/"></div>
     </body>
 </html>
