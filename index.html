@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <title>waixiong.github.io</title>
     <!-- HTML meta refresh URL redirection -->
+    <script src="jquery.js"></script>
+    <script>
+        $(function(){
+            $("#includedContent").load("https://waixiong.github.io/build");
+        });
+    </script>
 </head>
 
 <body>
-    <div data-include="https://waixiong.github.io/build"></div>
+    <div id="includedContent"></div>
 </body>
 </html>
