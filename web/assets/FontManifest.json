@@ -1,0 +1,74 @@
+[
+  {
+    "family": "MaterialIcons",
+    "fonts": [
+      {
+        "asset": "https://fonts.gstatic.com/s/materialicons/v42/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2"
+      }
+    ]
+  },
+  {
+    "family": "GoogleSans",
+    "fonts": [
+      {
+        "asset": "fonts/GoogleSans-Regular.ttf"
+      }
+    ]
+  },
+  {
+    "family": "GalleryIcons",
+    "fonts": [
+      {
+        "asset": "fonts/GalleryIcons.ttf"
+      }
+    ]
+  },
+  {
+    "family": "AbrilFatface",
+    "fonts": [
+      {
+        "asset": "AbrilFatface-Regular.ttf"
+      }
+    ]
+  },
+  {
+    "family": "LibreFranklin",
+    "fonts": [
+      {
+        "asset": "fonts/LibreFranklin-Regular.ttf"
+      }
+    ]
+  },
+  {
+    "family": "Merriweather",
+    "fonts": [
+      {
+        "asset": "fonts/Merriweather-Regular.ttf"
+      }
+    ]
+  },
+  {
+    "family": "Raleway",
+    "fonts": [
+      {
+        "asset": "fonts/Raleway-Regular.ttf"
+      },
+      {
+        "asset": "fonts/Raleway-Italic.ttf",
+        "style": "italic"
+      }
+    ]
+  },
+  {
+    "family": "RobotoMono",
+    "fonts": [
+      {
+        "asset": "fonts/RobotoMono-Regular.ttf"
+      },
+      {
+        "asset": "fonts/RobotoMono-Bold.ttf",
+        "weight": 700
+      }
+    ]
+  }
+]

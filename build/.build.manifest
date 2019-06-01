@@ -1,4 +1,14 @@
 .packages
+assets/FontManifest.json
+assets/fonts/AbrilFatface-Regular.ttf
+assets/fonts/GalleryIcons.ttf
+assets/fonts/GoogleSans-Regular.ttf
+assets/fonts/LibreFranklin-Regular.ttf
+assets/fonts/Merriweather-Regular.ttf
+assets/fonts/Raleway-Italic.ttf
+assets/fonts/Raleway-Regular.ttf
+assets/fonts/RobotoMono-Bold.ttf
+assets/fonts/RobotoMono-Regular.ttf
 assets/images/background.jpg
 index.html
 main.dart.js
