@@ -1,5 +1,7 @@
 import 'dart:math';
 
+//import 'package:flutter_web_ui/ui.dart' as ui;
+
 import 'package:flutter_web/cupertino.dart';
 import 'package:flutter_web/material.dart';
 import 'package:flutter_web/widgets.dart';
@@ -45,10 +47,13 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
 
   bool navOpen;
   String navTab;
+
+  AnimationController _navController;
+  Animation<double> _animateNav;
 
   @override
   void initState() {
@@ -56,6 +61,12 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     navOpen = false;
     String navTab = 'Introduction';
+
+    _navController = AnimationController(vsync: this, duration: Duration(milliseconds: 300))
+      ..addListener(() {
+        setState(() {});
+      });
+    _animateNav = Tween<double>(begin: 0.0, end: 1.0).animate(_navController);
   }
 
   @override
@@ -66,28 +77,28 @@ class _MyHomePageState extends State<MyHomePage> {
     Size size = MediaQuery.of(context).size;
     Map<String, Map<String, Widget>> page2Widget = {
       'Introduction': {
-        'Icon': Icon(Icons.info, color: Colors.white70),
+        'Icon': Container( height: 50, width: 80, child: Icon(Icons.info, color: Colors.white70),),
         'Widget': null
       },
       'Education': {
-        'Icon': Icon(Icons.library_books, color: Colors.white70),
+        'Icon': Container( height: 50, width: 80, child: Icon(Icons.library_books, color: Colors.white70),),
         'Widget': null
       },
       'Skills & Experience': {
-        'Icon': Icon(Icons.star, color: Colors.white70),
+        'Icon': Container( height: 50, width: 80, child: Icon(Icons.star, color: Colors.white70),),
         'Widget': null
       },
       'Participation & Awards': {
-        'Icon': Icon(Icons.tv, color: Colors.white70),
+        'Icon': Container( height: 50, width: 80, child: Icon(Icons.tv, color: Colors.white70),),
         'Widget': null
       },
       'Others': {
-        'Icon': null,
+        'Icon': Container( width: 30,),
         'Widget': null
       }
     };
     List<String> pageKey = page2Widget.keys.toList();
-    
+
     Widget backgroud = new Positioned.fill( child: Image.asset('images/background.jpg', fit: BoxFit.cover,), );
     double navRight = 360;
     Widget content = new Positioned(
@@ -107,25 +118,35 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget nav = new Positioned(
       top: 56,
       left: 0,
-      right: navOpen? size.width - navRight : (isLargeScreen(size)? size.width - navRight : size.width),
+      right: size.width - navRight * (isLargeScreen(size)? 1.0 : _animateNav.value),
       bottom: 0,
       child: Container(
         color: Colors.black45,
-        child: Center(
-          child: ListView.builder(
-            itemCount: pageKey.length,
-            itemBuilder: (BuildContext context, int index){
-              return new ListTile(
-                leading: page2Widget[pageKey[index]]['Icon'],
-                onTap: () => setState((){
-                  navTab = pageKey[index];
-                  navOpen = false;
-                  print(pageKey[index]);
-                }),
-                title: Text(pageKey[index], style: TextStyle(color: Colors.white70, fontFamily: 'RobotoMono')),
-              );
-            },
-          ),
+        child: ListView.builder(
+          itemCount: pageKey.length,
+          itemBuilder: (BuildContext context, int index){
+            return GestureDetector(
+              onTap: () => setState((){
+                navTab = pageKey[index];
+                navOpen = false;
+                _navController.reverse();
+                print(pageKey[index]);
+              }),
+              child: new SizedBox(
+                height: 50,
+                width: navRight,
+                child: Container(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      page2Widget[pageKey[index]]['Icon'],
+                      Text(pageKey[index], style: TextStyle(color: Colors.white70, fontFamily: 'RobotoMono', fontSize: 16))
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -141,6 +162,8 @@ class _MyHomePageState extends State<MyHomePage> {
           icon: Icon(Icons.view_list, color: Colors.white70,),
           onPressed: () => setState((){
             navOpen = !navOpen;
+            if(navOpen) _navController.forward();
+            else _navController.reverse();
           }),
         ),
       ),
